@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avery Stoltzfus — Creative Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4EEE4;
+    --burgundy:#3F1220;
+    --blush:#E9B8C4;
+    --ink:#1A1613;
+    --sage:#B7C4A6;
+    --cream-soft:#EFE7D8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
+  .script{font-family:'Cormorant Garamond',serif;font-style:italic;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  section{padding:110px 0;}
+  @media (max-width:700px){ section{padding:70px 0;} .wrap{padding:0 22px;} }
+
+  /* texture */
+  .grain{
+    position:relative;
+  }
+  .grain::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events:none;
+  }
+
+  /* -------- nav -------- */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:var(--burgundy);
+    display:flex;justify-content:center;
+    padding:0 20px;
+    box-shadow:0 2px 14px rgba(0,0,0,.12);
+  }
+  .navlinks{
+    display:flex;gap:6px;max-width:1100px;width:100%;
+    overflow-x:auto;
+  }
+  .navlinks a{
+    color:var(--cream);
+    text-decoration:none;
+    font-size:12.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:18px 16px;
+    white-space:nowrap;
+    border-bottom:2px solid transparent;
+    transition:border-color .2s ease, opacity .2s ease;
+    opacity:.82;
+  }
+  .navlinks a:hover{opacity:1;border-color:var(--blush);}
+
+  /* -------- hero -------- */
+  .hero{
+    min-height:92vh;
+    display:flex;align-items:flex-end;
+    background:
+      linear-gradient(to top, var(--cream) 4%, rgba(244,238,228,0.15) 42%, rgba(244,238,228,0) 70%),
+      linear-gradient(120deg, #cbb7a4 0%, #b79a8c 35%, #9c8479 100%);
+    position:relative;
+    padding-bottom:70px;
+  }
+  .hero-photo-note{
+    position:absolute;top:26px;right:26px;
+    font-size:11px;color:var(--cream);
+    background:rgba(63,18,32,.55);
+    padding:6px 12px;border-radius:20px;
+    letter-spacing:.05em;
+  }
+  .hero-inner{width:100%;text-align:center;}
+  .hero h1{
+    font-size:clamp(48px,9vw,96px);
+    font-weight:600;
+    color:var(--burgundy);
+    line-height:.95;
+  }
+  .hero .first{
+    display:block;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(38px,7vw,72px);
+    color:var(--burgundy);
+    margin-bottom:-6px;
+  }
+  .tagline{
+    margin-top:18px;
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+  }
+
+  /* -------- section headers -------- */
+  .eyebrow{
+    font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--burgundy);opacity:.65;margin-bottom:10px;
+  }
+  .sec-title{font-size:clamp(30px,4vw,42px);font-weight:600;color:var(--burgundy);margin-bottom:34px;}
+
+  /* -------- about -------- */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:start;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{margin:0 0 18px;font-size:16.5px;max-width:520px;}
+  .photo-frame{
+    border:8px solid var(--cream-soft);
+    background:linear-gradient(135deg,#d8c3b3,#b79a8c);
+    aspect-ratio:4/5;
+    border-radius:2px;
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(63,18,32,.55);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    box-shadow:0 10px 30px rgba(63,18,32,.15);
+  }
+  .stat-strip{
+    margin-top:26px;
+    font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--burgundy);
+    border-top:1px solid rgba(63,18,32,.25);
+    padding-top:14px;
+  }
+
+  /* -------- skills chips -------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px;}
+  @media (max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  .skill-cat h4{
+    font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--burgundy);margin:0 0 14px;font-weight:600;
+  }
+  .chip{
+    display:inline-block;
+    border:1px solid var(--burgundy);
+    color:var(--burgundy);
+    border-radius:999px;
+    padding:7px 14px;
+    font-size:12.5px;
+    margin:0 6px 10px 0;
+    transition:transform .18s ease, background .18s ease, color .18s ease;
+  }
+  .chip:hover{background:var(--burgundy);color:var(--cream);transform:translateY(-2px);}
+  .cert-strip{
+    margin-top:44px;padding-top:30px;border-top:1px solid rgba(63,18,32,.2);
+    display:flex;gap:40px;flex-wrap:wrap;
+  }
+  .cert{
+    font-size:13px;color:var(--ink);
+  }
+  .cert b{color:var(--burgundy);display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+
+  /* -------- tools -------- */
+  .tools-row{
+    display:flex;justify-content:center;gap:54px;flex-wrap:wrap;text-align:center;
+  }
+  .tool-icon{
+    width:64px;height:64px;border-radius:50%;
+    border:1px solid var(--burgundy);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 10px;
+    color:var(--burgundy);font-family:'Fraunces',serif;font-size:20px;
+  }
+  .tool-name{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);}
+
+  /* -------- experience divider -------- */
+  .divider-sec{
+    background:var(--burgundy);color:var(--cream);
+    padding:130px 0;
+  }
+  .divider-sec .eyebrow{color:var(--blush);opacity:.9;}
+  .divider-sec .sec-title{color:var(--cream);}
+  .exp-item{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:26px 0;border-bottom:1px solid rgba(244,238,228,.25);
+    font-size:clamp(20px,3vw,30px);
+  }
+  .exp-item:last-child{border-bottom:none;}
+  .exp-item span.role{
+    font-family:'Inter',sans-serif;font-size:13px;color:var(--blush);letter-spacing:.04em;
+  }
+
+  /* -------- case studies -------- */
+  .case{border-top:1px solid rgba(63,18,32,.15);}
+  .case-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;}
+  @media (max-width:850px){.case-grid{grid-template-columns:1fr;}}
+  .case-sub{font-size:14px;color:var(--burgundy);margin-bottom:26px;letter-spacing:.02em;}
+  .case-label{
+    font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--burgundy);font-weight:600;margin:26px 0 8px;
+  }
+  .case-label:first-of-type{margin-top:0;}
+  .case ul{margin:0;padding-left:18px;}
+  .case li{margin-bottom:8px;font-size:15px;}
+  .case p.body{font-size:15px;margin:0;}
+  .results-box{
+    margin-top:26px;padding:18px 20px;
+    background:var(--cream-soft);border-left:3px solid var(--burgundy);
+    font-size:14.5px;
+  }
+  .photo-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  }
+  .ph{
+    aspect-ratio:1/1;border:6px solid var(--cream);
+    background:linear-gradient(135deg,#d8c3b3,#b79a8c);
+    display:flex;align-items:center;justify-content:center;
+    font-size:10.5px;color:rgba(63,18,32,.55);letter-spacing:.05em;text-transform:uppercase;text-align:center;
+    box-shadow:0 6px 18px rgba(63,18,32,.12);
+  }
+  .ph:nth-child(3){grid-column:span 2;aspect-ratio:2/1;}
+
+  /* -------- social content -------- */
+  .social-wrap{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;padding-top:20px;}
+  .phone{
+    width:190px;height:390px;border-radius:26px;
+    background:linear-gradient(160deg,#cbb7a4,#9c8479);
+    border:6px solid var(--ink);
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--cream);font-size:11px;letter-spacing:.05em;text-transform:uppercase;text-align:center;padding:16px;
+    box-shadow:0 14px 28px rgba(63,18,32,.18);
+  }
+  .phone:nth-child(2){transform:translateY(-22px);}
+  .phone:nth-child(3){transform:translateY(14px);}
+  .heart{position:absolute;color:var(--burgundy);font-size:20px;}
+
+  /* -------- contact -------- */
+  .contact-sec{position:relative;padding-bottom:140px;}
+  .contact-flex{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;}
+  .wrap-title{font-size:clamp(40px,7vw,68px);color:var(--burgundy);}
+  .envelope{
+    width:280px;position:relative;
+  }
+  .env-body{
+    background:var(--blush);
+    height:170px;border-radius:4px;
+    position:relative;
+    box-shadow:0 16px 30px rgba(63,18,32,.18);
+    overflow:hidden;
+  }
+  .env-flap{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:linear-gradient(135deg, #f0cdd6 50%, transparent 50%), linear-gradient(-135deg, #f0cdd6 50%, transparent 50%);
+    background-position:left top, right top;
+    background-size:50% 100%;
+  }
+  .note{
+    position:absolute;top:14px;left:22px;right:22px;bottom:14px;
+    background:#fdfaf3;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
+    padding:14px;
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12.5px;color:#3a2d28;
+    line-height:1.5;
+    transform:rotate(-1.5deg);
+  }
+  .contact-details{
+    font-size:13px;letter-spacing:.04em;color:var(--ink);
+    margin-top:20px;
+  }
+  .contact-details a{color:var(--burgundy);text-decoration:none;border-bottom:1px solid var(--burgundy);}
+  .contact-copy{font-size:15.5px;max-width:420px;}
+
+  footer{
+    text-align:center;padding:26px 0;font-size:11.5px;color:rgba(63,18,32,.5);
+    letter-spacing:.06em;text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#tools">Tools</a>
+    <a href="#experience">Experience</a>
+    <a href="#pinkchicken">Pink Chicken</a>
+    <a href="#freddyb">Freddy B</a>
+    <a href="#social">Social</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-photo-note">Photo placeholder — swap for editorial portrait</div>
+  <div class="hero-inner wrap">
+    <h1><span class="first">Avery</span>Stoltzfus</h1>
+    <div class="tagline">Fashion Styling · Merchandising · Social Commerce</div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="grain">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">About</div>
+      <h2 class="sec-title">About Me</h2>
+      <p>I'm a Fashion Merchandising major concentrating in Promotion at Marist, building a career at the intersection of styling, retail merchandising, and social commerce.</p>
+      <p>My path started early and never wavered — from styling my first "client" (my mom) to earning an LVMH certification in branding and retail experience. Today I'm focused on turning that eye for color, proportion, and storytelling into measurable results for the brands I work with.</p>
+      <p>I'm currently interning with Pink Chicken NY across their Buying, Merchandising, and E-Commerce teams — putting that eye for color, proportion, and storytelling to work across the full retail pipeline, from sourcing to sell-through.</p>
+      <div class="stat-strip">LVMH Certified &nbsp;·&nbsp; Marist University &nbsp;·&nbsp; Styling &amp; Merchandising</div>
+    </div>
+    <div class="photo-frame">Editorial portrait placeholder</div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="grain">
+  <div class="wrap">
+    <div class="eyebrow">Capabilities</div>
+    <h2 class="sec-title">Skills &amp; Certifications</h2>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h4>Creative</h4>
+        <span class="chip">Visual Storytelling</span>
+        <span class="chip">Store Merchandising</span>
+        <span class="chip">Aesthetic Curation</span>
+        <span class="chip">Creative Collaboration</span>
+        <span class="chip">Color, Texture &amp; Proportion</span>
+      </div>
+      <div class="skill-cat">
+        <h4>Analytical &amp; Merchandising</h4>
+        <span class="chip">Retail Analytics</span>
+        <span class="chip">Trend Forecasting</span>
+        <span class="chip">Data Analysis</span>
+        <span class="chip">Product Lifecycle Mgmt</span>
+        <span class="chip">Digital Merchandising</span>
+      </div>
+      <div class="skill-cat">
+        <h4>Professional</h4>
+        <span class="chip">Time Management</span>
+        <span class="chip">Fast-Paced Adaptability</span>
+        <span class="chip">Team Collaboration</span>
+        <span class="chip">Multi-Tasking</span>
+        <span class="chip">Project Coordination</span>
+      </div>
+      <div class="skill-cat">
+        <h4>Personal</h4>
+        <span class="chip">Community-Minded</span>
+        <span class="chip">Calm Under Pressure</span>
+        <span class="chip">Empathetic Communication</span>
+        <span class="chip">Open-Minded &amp; Inclusive</span>
+      </div>
+    </div>
+    <div class="cert-strip">
+      <div class="cert"><b>LVMH Certification</b>Creation &amp; Branding, Retail &amp; Customer Experience</div>
+      <div class="cert"><b>Microsoft</b>Office Specialist</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="grain">
+  <div class="wrap" style="text-align:center;">
+    <div class="eyebrow">Toolkit</div>
+    <h2 class="sec-title">Tools I Use</h2>
+    <div class="tools-row">
+      <div><div class="tool-icon">S</div><div class="tool-name">Shopify</div></div>
+      <div><div class="tool-icon">Ai</div><div class="tool-name">Adobe CC</div></div>
+      <div><div class="tool-icon">C</div><div class="tool-name">Canva</div></div>
+      <div><div class="tool-icon">O</div><div class="tool-name">MS Office</div></div>
+      <div><div class="tool-icon">#</div><div class="tool-name">Slack</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE DIVIDER -->
+<section id="experience" class="divider-sec">
+  <div class="wrap">
+    <div class="eyebrow">Where I've Worked</div>
+    <h2 class="sec-title">Experience</h2>
+    <div class="exp-item">
+      <span>Pink Chicken NY</span>
+      <span class="role">Buying, Merchandising &amp; E-Commerce</span>
+    </div>
+    <div class="exp-item">
+      <span>Freddy B Boutique</span>
+      <span class="role">E-Commerce &amp; Social Styling</span>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY: PINK CHICKEN -->
+<section id="pinkchicken" class="case grain">
+  <div class="wrap">
+    <div class="eyebrow">Case Study 01</div>
+    <h2 class="sec-title">Pink Chicken NY</h2>
+    <div class="case-sub">Buying, Merchandising &amp; E-Commerce Intern — Summer 2026</div>
+    <div class="case-grid">
+      <div>
+        <div class="case-label">The Role</div>
+        <p class="body">Supported the Buying, Merchandising, and E-Commerce teams at Pink Chicken, a contemporary children's and women's fashion brand — managing seasonal product assortments and optimizing the online customer experience.</p>
+
+        <div class="case-label">The Process</div>
+        <p class="body">Work moved across three connected functions on two different timelines: on e-commerce, keeping pace with current launches — maintaining and merchandising product live on the site in real time. On buying, working ahead — supporting assortment planning for Fall 2026, Holiday 2026, Spring 2027, and Fall 2027 as a forward-looking intern project, paired with competitive market research into trends, pricing, and assortment gaps. On merchandising, analyzing sales, inventory, and sell-through reports to guide replenishment decisions across both timelines.</p>
+
+        <div class="case-label">The Work</div>
+        <ul>
+          <li>Assisted buyers with seasonal assortment planning across four future seasons — Fall 2026, Holiday 2026, Spring 2027, and Fall 2027 — as a forward-looking intern buying project</li>
+          <li>Conducted competitive market research on trends, pricing, and assortment opportunities</li>
+          <li>Analyzed sales, inventory, and sell-through reports to support replenishment and merchandising decisions</li>
+          <li>Maintained product information, imagery, and merchandising content across the e-commerce platform</li>
+          <li>Created and updated product collections, category pages, and merchandising features</li>
+          <li>Supported promotional campaigns, launches, and site merchandising during key retail events</li>
+          <li>Collaborated cross-functionally with design, marketing, operations, and production</li>
+          <li>Prepared reports and presentations in Excel to support business planning</li>
+        </ul>
+
+        <div class="results-box"><b>Results:</b> Buying direction contributed to assortment planning used across multiple future seasons, and the merchandising work completed on the online store is seen by thousands of shoppers daily.</div>
+      </div>
+      <div class="photo-grid">
+        <div class="ph">Market / showroom photo</div>
+        <div class="ph">Workspace photo</div>
+        <div class="ph">Line sheet / assortment board</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY: FREDDY B -->
+<section id="freddyb" class="case grain">
+  <div class="wrap">
+    <div class="eyebrow">Case Study 02</div>
+    <h2 class="sec-title">Freddy B Boutique</h2>
+    <div class="case-sub">E-Commerce &amp; Social Content Styling</div>
+    <div class="case-grid">
+      <div>
+        <div class="case-label">The Role</div>
+        <p class="body">Styling and content creation for a boutique retailer's e-commerce and social channels, including a buying trip to the Free People buying office in NYC to curate Freddy B's Spring 2026 collection.</p>
+
+        <div class="case-label">The Process</div>
+        <p class="body">Every new shipment started with a plan, not a shoot. I built style mood boards using flat lays of incoming inventory, mapping outfit combinations and shot lists before styling and shooting each look — keeping weekly content consistent and on-brand under tight turnaround.</p>
+
+        <div class="case-label">The Work</div>
+        <ul>
+          <li>Curated roughly 20 styles for Freddy B's Spring 2026 collection at the Free People buying office, NYC</li>
+          <li>Styled and photographed looks for weekly e-commerce and social shoots</li>
+          <li>Built pre-shoot mood boards to plan cohesive collections before styling</li>
+        </ul>
+
+        <div class="results-box"><b>Results:</b> The pre-shoot mood board process sped up photoshoot days and made the shoot easier for the photographer to execute, by mapping every look and shot in advance rather than deciding on set.</div>
+      </div>
+      <div class="photo-grid">
+        <div class="ph">Boutique rack photo</div>
+        <div class="ph">Styled look photo</div>
+        <div class="ph">Free People buying trip photo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL CONTENT -->
+<section id="social" class="grain">
+  <div class="wrap" style="text-align:center;">
+    <div class="eyebrow">Proof of Work</div>
+    <h2 class="sec-title">Social Content</h2>
+    <p style="max-width:520px;margin:0 auto 10px;font-size:15px;">Styled content from weekly Freddy B shoots, including coverage of the Spring 2026 collection buy at Free People's NYC buying office.</p>
+    <div class="social-wrap">
+      <div class="heart" style="top:60px;left:calc(50% - 190px);">♡</div>
+      <div class="phone">Styled shoot content — Instagram Story placeholder</div>
+      <div class="phone">Freddy B feed post placeholder</div>
+      <div class="phone">Free People buying trip content placeholder</div>
+      <div class="heart" style="top:90px;right:calc(50% - 200px);">♡</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-sec grain">
+  <div class="wrap contact-flex">
+    <div class="envelope">
+      <div class="env-body">
+        <div class="env-flap"></div>
+        <div class="note">"Thank you so much for taking the time to look through my portfolio! I always appreciate new opportunities to learn and grow. If you're interested in working together, I'd love to chat."</div>
+      </div>
+      <div class="contact-details">
+        <div><a href="mailto:avery.stoltzfus1@marist.edu">avery.stoltzfus1@marist.edu</a></div>
+        <div style="margin-top:6px;"><a href="https://www.linkedin.com/in/avery-stoltzfus/" target="_blank">linkedin.com/in/avery-stoltzfus</a></div>
+      </div>
+    </div>
+    <div>
+      <h2 class="wrap-title">And that's<br>a wrap.</h2>
+    </div>
+  </div>
+</section>
+
+<footer>Avery Stoltzfus — Creative Portfolio Mockup</footer>
+
+</body>
+</html>
